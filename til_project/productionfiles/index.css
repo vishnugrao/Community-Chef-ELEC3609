@@ -1,0 +1,39 @@
+body {
+    background-color: #fffef6;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.buttons {
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 25px;
+    cursor: pointer;
+    text-align: center;
+    outline: none;
+    color: #333333;
+    background-color: #fff8dc;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+    text-decoration: none;
+    margin-bottom: 25%;
+}
+
+.buttons:hover, 
+.buttonsA:hover {
+    background-color: #b3b09a;
+    text-decoration: none;
+}
+
+.buttons:active, 
+.buttonsA:active {
+    background-color: #b3b09a;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+    text-decoration: none;
+  }
+
+.buttonsA{
+    text-decoration: none;
+    font-size: 25px;
+}

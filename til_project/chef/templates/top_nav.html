@@ -1,0 +1,15 @@
+<div class="topnav">
+    <a href="{% url 'profile_manager:homepage' %}">LOGO</a>
+    <div class="topnav-right">
+        <!-- <a class="active" href="">Home</a> -->
+        <a href="#about">About</a>
+        <a href="{% url 'chef:chef_login' %}">Chef Login</a>
+        <a href="{% url 'customer:customer_login' %}">Customer Login</a>
+        <a href="/chatbot">Sous Chef AI</a>
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="/static/index.css?{% now 'U' %}"/>
+    <link rel="stylesheet" href="/static/global.css?{% now 'U' %}"/>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">

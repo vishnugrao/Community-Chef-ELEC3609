@@ -1,0 +1,53 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Community Chef</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/index.css?{% now 'U' %}"/>
+    <link rel="stylesheet" href="/static/global.css?{% now 'U' %}"/>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body>
+    <div class="topnav">
+        <a href="{% url 'profile_manager:homepage' %}">LOGO</a>
+        <div class="topnav-right">
+            <!-- <a class="active" href="">Home</a> -->
+            <a href="#about">About</a>
+            <a href="{% url 'chef:chef_login' %}">Chef Login</a>
+            <a href="{% url 'customer:customer_login' %}">Customer Login</a>
+            <a href="/chatbot">Sous Chef AI</a>
+        </div>
+    </div>
+
+
+    <!-- First Parallax Image with Logo Text -->
+    <div class="bgimg-1 w3-display-container" id="home">
+        <img src="{% static 'logohome.png' %}" width="100%" style="opacity: 90%;" height="auto">
+        <div class="w3-display-bottommiddle" style="white-space:nowrap;">
+            <a class="buttonsA" href="{% url 'customer:customer_login' %}"><button class="buttons">Login As Customer</button></a>
+            <a class="buttonsA" href="{% url 'chef:chef_login' %}"><button class="buttons">Login As Chef</button></a>
+        </div>
+    </div>
+
+    <!-- Container (About Section) -->
+    <div class="w3-content w3-container w3-padding-64" id="about" style="margin-bottom: 70px;">
+        <h3 class="w3-center">ABOUT US</h3>
+        <p class="w3-center"><em>"Savor the Local Flavor – Connecting Homemade Chefs and Culinary Enthusiasts!"</em></p>
+        <p>Welcome to Community Chef Pro, where we passionately unite homemade culinary enthusiasts and discerning food lovers in one vibrant community. Born from a deep appreciation for authentic, home-cooked meals, our platform is meticulously crafted to provide a seamless avenue for talented, local chefs to showcase their culinary creations, and for customers to explore, connect, and indulge in the unique flavors of their community. Whether you are a chef eager to share your gastronomic talents, or a food aficionado in search of the next best meal, Community Chef Pro is your culinary haven. Together, let's celebrate the art of cooking, savor unforgettable flavors, and build a community that thrives on the love of good food.</p>
+    </div>
+    <!-- Footer -->
+    <div>
+        <footer class="w3-black w3-opacity w3-hover-opacity-off" style="margin-bottom: 0; overflow: hidden;">
+            <p class="w3-center">Not sure what to include here</p>
+        </footer>
+    </div>
+
+
+</body>
+
+</html>

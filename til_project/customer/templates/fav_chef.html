@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liked Chefs</title>
+    <style>
+        body {
+            background-color: #fffef6;
+            font-family: 'Times New Roman', Times, serif;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 50px;
+        }
+
+        .chef-card {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px auto;
+            width: 250px;
+            transition: transform 0.2s;
+            text-align: center;
+        }
+
+        .chef-card img {
+            width: 220px;
+            height: 140px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .chef-card h3 {
+            margin: 0;
+        }
+
+        p {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="topnav">
+    <h1>Liked Chefs</h1>
+</div>
+
+{% if liked_chefs %}
+    {% for chef in liked_chefs %}
+        <div class="chef-card">
+            <img src="{{ chef.image.url }}" alt="{{ chef.firstname }} {{ chef.lastname }}">
+            <h3>{{ chef.firstname }} {{ chef.lastname }}</h3>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No Chefs Liked</p>
+{% endif %}
+
+</body>
+</html>

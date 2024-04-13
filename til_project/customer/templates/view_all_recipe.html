@@ -1,0 +1,65 @@
+<html>
+
+<head>
+    <title>All Recipes</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/recipies.css?{% now 'U' %}" />
+    <link rel="stylesheet" href="/static/global.css?{% now 'U' %}" />
+    <link rel="stylesheet" type="text/css" href="/static/login.css?{% now 'U' %}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Zeyada">
+</head>
+
+<body>
+
+    <div class="topnav">
+        <a>LOGO</a>
+        <div class="topnav-right">
+            <a href="{% url 'customer:index' user.id %}">Home</a>
+            <a class="active" href="{% url 'customer:view_all_recipe' user.id %}"> All Recipies</a>
+            <a href="">Fav Chefs</a>
+            <div class="dropdown">
+                <a style="padding: 0px 0px;"><img src="{{ chef.image.url }}" class="dropbtn"></a>
+                <div class="dropdown-content">
+                    <a href="{% url 'profile_manager:logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i>
+                        Logout </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="main">
+
+        <h1 style="font-family: Zeyada; font-size: 50px; text-align: center; margin-bottom: 20px; color: #333"
+            class="welcome">
+            <image src="/static/chef_welcome.png" width="70px"></image> All Recipes
+        </h1>
+        <hr>
+
+        <!-- Portfolio Gallery Grid -->
+        <div class="row">
+            {% for recipe in recipes %}
+            <div class="column">
+                <div href="{% url 'customer:recipe_view' user.id recipe.id %}" class="content">
+                    <img src="{{ recipe.image.url }}" alt="{{ recipe.name }}" class="recipe-image">
+                    <h3 class="recipe-title">{{ recipe.name }}</h3>
+                    <p class="recipe-description">{{ recipe.description }}</p>
+                </div>
+                <a href="{% url 'customer:recipe_view' user.id recipe.id %}">
+                    <div class="middle">
+                        <div class="text">View More</div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+</body>
+
+</html>

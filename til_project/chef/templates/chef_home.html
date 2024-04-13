@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Home</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/global.css?{% now 'U' %}" />
+    <link rel="stylesheet" type="text/css" href="/static/login.css?{% now 'U' %}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Zeyada">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+</head>
+
+<body>
+    <div class="topnav">
+        <a>LOGO</a>
+        <div class="topnav-right">
+            <a class="active" href="{% url 'chef:chef_home' id=id %}">Home</a>
+            <a href="{% url 'chef:display_recipes' id=id %}"> My Recipies</a>
+            <a href="{% url 'chef:chef_availability' id=id %}">Bookings</a>
+            <a href="{% url 'chef:chef_chats' id=id %}">Chat</a>
+            <div class="dropdown">
+                <a style="padding: 0px 0px;"><img src="{{ chef.image.url }}"
+                        class="dropbtn"></a>
+                <div class="dropdown-content">
+                    <a href="{% url 'chef:chef_profile' id=id %}">Account</a>
+                    <a href="{% url 'profile_manager:logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <h1 style="font-family: Zeyada; font-size: 50px; text-align: center;" class="welcome">
+            <image src="/static/chef_welcome.png" width="70px"></image> Welcome {{ chef_name }}
+        </h1>
+        <br>
+        <br>
+    </div>
+
+    <div style="text-align: center; width:500px; margin: auto;">
+        <p>Welcome to your Chef Dashboard, the ultimate culinary playground where your gastronomic creativity comes to life! Are you ready to share your scrumptious recipes with the world? Dive into the 'All Recipes' page where your culinary creations take center stage. Here, not only can you feast your eyes on your collection of delectable dishes, but you can also hit the 'Add Recipe' button to sprinkle some more magic into your recipe repertoire. It's like opening a treasure chest of flavors, and you've got the key!</p>
+        <br>
+        <p>But wait, there's more! Glide over to the 'Bookings' tab right from the top navigation and step into a world where connections are made, and culinary adventures begin. Whether you're looking to showcase your signature dishes or host an exclusive dining experience, this is your moment to shine and create unforgettable memories for food lovers everywhere.</p>
+        <br>
+        <p>And for the moments in between, your profile picture is your portal to personalization. Give it a click to log in, log out, and manage your account with ease. It's like having a personal culinary assistant right at your fingertips!</p>
+        <br>
+        <p>Don't forget to check in with your Chat Room, where the conversation is always simmering. Recent messages await, ready to connect you with fellow food enthusiasts and potential clients. It's the perfect space to stir up excitement and cook up new opportunities.</p>
+        <br>
+        <p>So, what are you waiting for? Your Chef Dashboard is the canvas, and you are the artist. Let's create some culinary magic and spread the joy of cooking, one delicious recipe at a time! Welcome to the hub of flavor, fun, and endless possibilities!</p>
+        <br>
+        <br>
+        <br>
+    </div>
+
+</body>
+
+</html>

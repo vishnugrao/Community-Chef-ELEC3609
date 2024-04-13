@@ -1,0 +1,62 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Chef Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'login.css' %}">
+    <link rel="stylesheet" href="/static/global.css?{% now 'U' %}" />
+    <link rel="stylesheet" type="text/css" href="/static/login.css?{% now 'U' %}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Zeyada">
+</head>
+
+<body>
+
+    <div class="topnav">
+        <a>LOGO</a>
+        <div class="topnav-right">
+            <a href="{% url 'profile_manager:homepage' %}">Home</a>
+            <a class="active" href="{% url 'chef:chef_login' %}">Chef Login</a>
+            <a href="{% url 'customer:customer_login' %}">Customer Login</a>
+        </div>
+    </div>
+
+    <div class="form-container">
+        <br>
+        <h1 style="font-family: Zeyada; font-size: 50px;">Chef Login</h1>
+        <p>Enter your username and password to login</p>
+        <br>
+        <form method="POST" class="login">
+            {% csrf_token %}
+
+            {% if invalid %}
+                Could not find a chef with the given username and password.
+
+                {% for error in form.non_field_errors %}
+                    <p class="error">{{ error }}</p>
+                {% endfor %}
+            {% endif %}
+
+            <label for="{{ form.username.id_for_label }}" class="form-label">Username:</label>
+            {{ form.username }}
+
+            <label for="{{ form.password.id_for_label }}" class="form-label">Password:</label>
+            {{ form.password }}
+
+            <button type="submit" class="submit-button">Login</button>
+        </form>
+    </div>
+
+
+    <div class="center">
+        <p>if you don't have an account: &nbsp;&nbsp;&nbsp;</p>
+        <button><a href="{% url 'chef:create_chef_profile' %}">Create Account</a></button>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Update Chef Profile</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/global.css?{% now 'U' %}" />
+    <link rel="stylesheet" type="text/css" href="/static/login.css?{% now 'U' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Zeyada">
+    <style>
+        .profileContainer {
+            display: flex;
+            align-items: center;
+        }
+        .profileColumn {
+            display: flex;
+            flex-direction: column;
+            margin: 30px 1px 15px 3px; /* Adjust the margin for spacing between text fields and move it lower */
+            text-align: right;
+            align-items: flex-start; /* Align text fields with prompts */
+        }
+        .profileColumn label {
+            width: 250px;
+            margin-top: 15;
+            margin-bottom: 22px;
+            font-size: 18px; /* Increase the prompt font size */
+        }
+        .profileColumn input {
+            width: 200px;
+            border: 3px solid #ccc;
+            border-radius: 4px;
+            padding: 5px;
+            font-size: 16px;
+            margin-top: 6px; /* Reduce gap between text fields */
+        }
+        .profileColumn input[type="file"] {
+            width: auto;
+            padding: 3px; /* Reduce the padding for the file input */
+        }
+        .updateButton {
+            width: 100px; /* Adjust the width as needed */
+            padding: 5px; /* Adjust the padding for the button */
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body style="background-color: #333;">
+
+    <div class="topnav">
+        <a>LOGO</a>
+        <div class="topnav-right">
+            <a href="{% url 'chef:chef_home' user.id %}">Home</a>
+            <a href="{% url 'chef:display_recipes' user.id %}">My Recipes</a>
+            <a href="#">Bookings</a>
+            <div class="dropdown">
+                <a style="padding: 0px 0px;"><img src="{{ user.image.url }}"
+                        class="dropbtn"></a>
+                <div class="dropdown-content">
+                    <a class="active" href="{% url 'chef:chef_profile' user.id %}">Account</a>
+                    <a href="{% url 'profile_manager:homepage' %}"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h1 style="font-family: Zeyada; font-size: 50px; text-align: center; margin-bottom: 20px; color: #fff8dc"
+        class="welcome">
+        <img src="/static/chef_welcome.png" width="70px"> Update Chef Profile
+    </h1>
+
+    <div style="max-width: 150px; margin: auto; text-align: center; margin-bottom: 50px;">
+        <a href="{% url 'chef:chef_profile' user.id %}"><button style="font-family: 'Open Sans', sans-serif;"> Back to Profile </button></a>
+    </div>
+
+    <div class="profileContainer">
+        <div class="profileColumn">
+            <label for="username">Username:</label>
+            <label for "firstname">First Name:</label>
+            <label for="email">Email:</label>
+            <label for="lastname">Last Name:</label>
+            <label for="password">Password:</label>
+            <label for="image">Profile Picture:</label>
+        </div>
+        <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="profileColumn">
+            <input type="text" name="username" value="{{ user.username }}">
+            <input type="text" name="firstname" value="{{ user.firstname }}">
+            <input type="email" name="email" value="{{ user.email }}">
+            <input type="text" name="lastname" value="{{ user.lastname }}">
+            <input type="password" name="password" placeholder="New Password">
+            <input type="file" name="image" accept="image/*" style="border: 3px solid #ccc; border-radius: 4px; padding: 5px; width: 200px;"> <!-- Adjust the width value as needed -->
+        </div>
+    </div>
+    <div style="text-align: center; margin-top: 20px;">
+        <button type="submit" class="updateButton" style="font-family: 'Open Sans', sans-serif;">Update Profile</button>
+    </div>
+</form>
+</body>
+
+</html>

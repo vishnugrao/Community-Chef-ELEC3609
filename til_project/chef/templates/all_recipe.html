@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Your Recipes</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/global.css?{% now 'U' %}" />
+    <link rel="stylesheet" href="/static/recipies.css?{% now 'U' %}" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Zeyada">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="topnav">
+        <a>LOGO</a>
+        <div class="topnav-right">
+            <a href="{% url 'chef:chef_home' chef.id %}">Home</a>
+            <a class="active" href="{% url 'chef:display_recipes' chef.id %}"> My Recipies</a>
+            <a href="">Bookings</a>
+            <div class="dropdown">
+                <a style="padding: 0px 0px;"><img src="{{ chef.image.url }}" class="dropbtn"></a>
+                <div class="dropdown-content">
+                    <a href="{% url 'chef:chef_profile' chef.id %}">Account</a>
+                    <a href="{% url 'profile_manager:logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i>
+                        Logout </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="main">
+
+        <h1 style="font-family: Zeyada; font-size: 50px; text-align: center; margin-bottom: 20px; color: #333"
+            class="welcome">
+            <image src="/static/chef_welcome.png" width="70px"></image> {{ chef.username }}'s Recipes
+        </h1>
+        <hr>
+
+        <!-- Portfolio Gallery Grid -->
+        <div class="row">
+            {% for recipe in recipes %}
+            <div class="column">
+                <div href="{% url 'chef:recipe_profile' recipe.id %}" class="content">
+                    <img src="{{ recipe.image.url }}" alt="{{ recipe.name }}" class="recipe-image">
+                    <h3 class="recipe-title">{{ recipe.name }}</h3>
+                    <p class="recipe-description">{{ recipe.description }}</p>
+                </div>
+                <a href="{% url 'chef:recipe_profile' recipe.id %}">
+                    <div class="middle">
+                        <div class="text">View More</div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+            <div class="columnStay">
+                <img src="/static/recipe.png" alt="{{ recipe.name }}" class="recipe-image">
+                <br>
+                <br>
+                <br>
+                <div style="max-width: 130px; margin: auto; height: auto; padding-bottom: 30px;">
+                   <a href="{% url 'chef:add_recipe' chef.id %}"><button class="button"> Add a Recipe </button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>

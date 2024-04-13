@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="stylesheet" type="text/css" href="{% static 'chatbot/styles.css' %}">
+        <title> SouChef - Recipe Generator </title>
+    </head>
+    <body>
+        {% include 'top_nav.html' %}
+        <div class="content-container">
+        <h1>SousChef - Recipe Generator</h1>
+        <p>Here's a recipe suggestion for your ingredients</p>
+        <div class="recipe-title">
+            {{ title }}
+        </div>
+        
+        <div class="recipe-ingredients">
+            <h5>Ingredients </h5>
+            <ol>
+                {% for i in ingredients %}
+                    <li> {{i}} </li>
+                {% endfor %}
+            </ol>
+        </div>
+        <div class="recipe-instructions">
+            <h5>Instructions</h5>
+            <ol>
+                {% for step in instructions %}
+                    <li>{{ step }}</li>
+                {% endfor %}
+            </ol>
+        </div>
+        <div class="button-container">
+            <button class="round-button" onclick="location.href='{% url 'add_ingredient' %}'">
+                Create Another Recipe
+            </button>
+        </div>
+    </div>
+    </body>
+</html>

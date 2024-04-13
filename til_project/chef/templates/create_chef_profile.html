@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Chef Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/global.css?{% now 'U' %}" />
+    <link rel="stylesheet" href="/static/login.css?{% now 'U' %}" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Zeyada">
+</head>
+
+<body>
+
+    <div class="topnav">
+        <a>LOGO</a>
+        <div class="topnav-right">
+            <a class="active" href="{% url 'profile_manager:homepage' %}">Home</a>
+            <a href="{% url 'chef:chef_login' %}">Chef Login</a>
+            <a href="{% url 'customer:customer_login' %}">Customer Login</a>
+        </div>
+    </div>
+
+
+    <div class="form-container">
+        <br>
+        <h1 style="font-family: Zeyada; font-size: 50px;">Create Chef Account</h1>
+        <p>Fill in the following form to create a chef profile!</p>
+        <br>
+        <form method="post" class="create_chef_profile">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+
+            <label for="{{ form.firstname.id_for_label }}" class="form-label">First Name:</label>
+            {{ form.firstname }}
+
+            <label for="{{ form.lastname.id_for_label }}" class="form-label">Last Name:</label>
+            {{ form.lastname }}
+
+            <label for="{{ form.username.id_for_label }}" class="form-label">Username:</label>
+            {{ form.username }}
+
+            <label for="{{ form.email.id_for_label }}" class="form-label">Email:</label>
+            {{ form.email }}
+
+            <label for="{{ form.password.id_for_label }}" class="form-label">Password:</label>
+            {{ form.password }}
+            <br><br>
+            <button type="submit" class="submit-button">Submit</button>
+        </form>
+    </div>
+
+
+    <div class="center">
+        <p>if you already have an account: &nbsp;&nbsp;&nbsp;</p>
+        <button><a href="{% url 'chef:chef_login' %}">Login</a></button>
+    </div>
+
+
+</body>
+
+</html>

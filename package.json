@@ -1,0 +1,14 @@
+{
+  "name": "group-14",
+  "version": "1.0.0",
+  "description": "Please run Redis in Docker before starting the server. Please first install Docker (Latest).",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.39.0",
+    "@types/node": "^20.8.10"
+  }
+}

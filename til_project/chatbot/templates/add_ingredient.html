@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'chatbot/styles.css' %}">
+        <title> SousChef - Recipe Generator </title>
+    </head>
+    <body>
+        {% include 'top_nav.html' %}
+        <div class="content-container">
+        <h1>SousChef - Recipe Generator</h1>
+        <div class="item-list">
+            <ul>
+                {% for item in ingredients %}
+                    <li>
+                        {{ item.name }}
+                        <button class="delete-item" data-item-id="{{ item.id }}"> <span class="close">&times;</span> </button>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <br>
+        <form method="post">
+            {% csrf_token %}
+            <label for="{{ form.name.id_for_label }}">Ingredient Name:</label>
+            {{ form.name }}
+            <button type="submit">Add Ingredient</button>
+        </form>
+        <p>
+        {% if error_message != "" %}
+            {{error_message}}
+        {% endif %}
+        </p>
+
+        <!-- <a href="{% url 'get_recipe' %}">Get Recipe Suggestion</a>
+        <br>
+        <a href="{% url 'clear_ingredients' %}">Clear Ingredient List</a> -->
+
+        <!-- Round buttons with conditional disabling -->
+        <div class="button-container">
+            <button class="round-button" onclick="location.href='{% url 'clear_ingredients' %}'">
+                Clear
+            </button>
+            <button class="round-button" onclick="location.href='{% url 'get_recipe' %}'">
+                Get Recipe
+            </button>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.item-list').on('scroll', function() {
+                if ($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
+                    // Fetch more items and append them to the list
+                    // You can implement this part with AJAX.
+                }
+            });
+
+            $.ajaxSetup({
+                data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+            });
+
+            // Delete item when the X button is clicked
+            $('.delete-item').on('click', function() {
+                const itemId = $(this).data('item-id');
+                $(this).parent().remove();
+
+                // Send an AJAX request to delete the item from the server
+                $.ajax({
+                    url: 'delete_item',
+                    type: 'POST',
+                    data: { item_id: itemId },
+                    success: function(response) {
+                        console.log(response.message);
+                    },
+                    error: function() {
+                        console.error('Error deleting item');
+                    }
+                });
+            });
+        });
+    </script>
+    </div>
+
+    </body>
+</html>

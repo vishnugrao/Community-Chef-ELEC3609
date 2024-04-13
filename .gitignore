@@ -1,0 +1,13 @@
+# VM Folder
+elec3609
+
+# Python Cache
+__pycache__
+*.pyc
+
+til_project/db.sqlite3
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

@@ -1,0 +1,214 @@
+/* styles.css */
+
+/* Style for the form container */
+.form-container {
+    max-width: 400px;
+    margin: auto;
+}
+
+/* Style for form labels */
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+/* Style for form fields */
+.form-field {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+/* Style for the password input field */
+.password-input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+.submit-button {
+    display: inline-block;
+    padding: 8px 175px;
+    font-size: 15px;
+    cursor: pointer;
+    text-align: center;
+    outline: none;
+    color: #333333;
+    background-color: #ebdcff;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #a59ab3;
+    text-decoration: none;
+    margin-bottom: 15%;
+}
+
+.submit-button:hover {
+    background-color: #a59ab3;
+    text-decoration: none;
+}
+
+h1 {
+    text-align: center;
+    font-size: 50px;
+}
+
+p {
+    text-align: center;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+
+}
+
+.center p{
+    text-align: left;
+}
+
+button {
+    display: inline-block;
+    padding: 8px 15px;
+    font-size: 15px;
+    cursor: pointer;
+    text-align: center;
+    outline: none;
+    color: #333333;
+    background-color: #ebdcff;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #a59ab3;
+    text-decoration: none;
+    margin: 15px; 
+    position:relative;
+    overflow: hidden;
+}
+
+button:hover {
+    background-color: #a59ab3;
+    text-decoration: none;
+}
+
+.invisible {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+.image-field input[type="file"] {
+    display: none; /* Hide the default file input */
+}
+
+.image-field label {
+    display: inline-block;
+    padding: 8px 15px;
+    font-size: 15px;
+    cursor: pointer;
+    text-align: center;
+    outline: none;
+    color: #333333;
+    background-color: #ebdcff;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #a59ab3;
+    text-decoration: none;
+    margin: 15px 0; /* Adjust margin to fit into the form */
+}
+
+.image-field label:hover {
+    background-color: #a59ab3;
+    text-decoration: none;
+}
+
+.added-ingredient {
+    margin-bottom: 30px;
+}
+
+.ingredient {
+    margin-bottom: 30px;
+}
+
+
+.center-container {
+    text-align: center;
+}
+
+
+/* Style for recipe details */
+.recipe-name {
+    font-size: 28px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.recipe-details {
+    font-size: 16px;
+}
+
+.recipe-image {
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+.ingredients-heading {
+    text-align: center;
+}
+
+/* Style for ingredients */
+.ingredients-table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+.ingredients-table th, .ingredients-table td {
+    border: 1px solid #a59ab3;
+    padding: 8px;
+    text-align: left;
+}
+
+.ingredients-table th {
+    background-color: #fffef6;
+}
+
+/* Style for the total price at the end of the table */
+.total-price-row td {
+    text-align: right; /* Align the total price to the right in its cell */
+    background-color: #a59ab3; /* Change the background color of the total price cell */
+    font-weight: bold; /* Make the total price text bold */
+    color: #fffef6; /* Set the text color for the total price */
+}
+
+/* Style for the total price heading */
+.total-price-heading {
+    font-size: 22px;
+    margin-top: 20px;
+    text-align: center;
+}

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Title</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="">
+        </script>
+        <style>
+        </style>
+    </head>
+
+    <body>
+
+    <h1>Report Customer</h1>
+    <!-- <p>paragraph one</p> -->
+
+    <form action="{% url 'chef:report_customer' %}" method="post">
+        {% csrf_token %}
+        
+        <input type="text" name="category">
+
+        <input type="text" name="description">
+
+        <input type="submit" value="Submit">
+    </form>
+
+    </body>
+</html>  

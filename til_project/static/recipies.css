@@ -1,0 +1,137 @@
+* {
+    box-sizing: border-box;
+}
+
+.main {
+    max-width: 1000px;
+    margin: auto;
+}
+
+h1 {
+    font-size: 50px;
+    word-break: break-all;
+}
+
+.row {
+    margin: 8px -16px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 16px;
+}
+
+.row,
+.row > .column {
+    padding: 8px;
+}
+
+.column {
+    color: #333;
+    background-color: #333;
+    border: 5px solid #333;
+    position: relative;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.content {
+    background-color: #a59ab3;
+    padding: 10px;
+    box-sizing: border-box;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-decoration: none;
+    opacity: 1;
+    transition: .5s ease;
+    backface-visibility: hidden;
+}
+
+
+.recipe-image {
+    width: 100%;
+    display: block;
+    max-height: 300px;
+    object-fit: cover;
+}
+
+.recipe-title {
+    font-size: 15px;
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 0;
+}
+
+.recipe-description {
+    text-align: left;
+}
+
+@media screen and (max-width: 900px) {
+    .column {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%;
+    }
+}
+
+  .middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+  .column:hover .content {
+    opacity: 0.3;
+  }
+  
+  .column:hover .middle {
+    opacity: 1;
+  }
+  
+  .text {
+    background-color: #fff8dc;
+    color: #333;
+    font-size: 16px;
+    padding: 16px 32px;
+  }
+
+  .columnStay {
+    color: #333;
+    background-color: #333;
+    border: 5px solid #333;
+    position: relative;
+}
+
+button {
+    display: inline-block;
+    padding: 8px 15px;
+    font-size: 15px;
+    cursor: pointer;
+    text-align: center;
+    outline: none;
+    color: #333333;
+    background-color: #fff8dc;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #b3b09a;
+    text-decoration: none;
+    margin: 15px; 
+}
+
+button:hover {
+    background-color: #b3b09a;
+    text-decoration: none;
+}

@@ -1,0 +1,33 @@
+
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Title</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="">
+            console.log("Welcome to the recipes page");  
+        </script>
+        <style>
+        </style>
+    </head>
+
+    <body>
+
+        {% block content %}
+            <h1>Book Availability</h1>
+            <p>Available Vacancies: {{ availability.vacancies }}</p>
+            
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Book</button>
+            </form>
+            
+            <a href="{% url 'chef_availability' id=availability.chef.pk %}">Back to Availability Calendar</a>
+        {% endblock %}
+
+    </body>
+</html>

@@ -1,0 +1,358 @@
+
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Title</title>
+        <link rel="stylesheet" href="/static/global.css?{% now 'U' %}" />
+        <!-- <link rel="stylesheet" type="text/css" href="/static/login.css?{% now 'U' %}"> -->
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Zeyada">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- <link rel="stylesheet" href="style.css"> -->
+        <script src="">
+            console.log("Welcome to the recipes page");  
+        </script>
+        <script src="
+            https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@6.1.9/index.global.min.js
+        "></script>
+        <script type="application/json" id="events-data">
+            {{ events|safe }}
+        </script>
+        <script>
+
+            document.addEventListener('DOMContentLoaded', function() {
+              var calendarEl = document.getElementById('calendar');
+              var eventsDataElement = document.getElementById('events-data');
+              var events_data = JSON.parse(eventsDataElement.textContent);
+              console.log(events_data);
+              var calendar = new FullCalendar.Calendar(calendarEl, {
+                customButtons: {
+                    addEvent: {
+                        text: 'Add Availability!',
+                        click: function() {
+                            
+                            var bookingModal = document.getElementById("bookingModal");
+
+                            // Get the <span> element that closes the modal
+                            var closeX = document.getElementsByClassName("close")[0];
+
+                            // When the user clicks on <span> (x), close the modal
+                            closeX.onclick = function() {
+                                bookingModal.style.display = "none";
+                            }
+
+                            bookingModal.style.display = "block";
+
+                        }
+                    }
+                },
+                headerToolbar: {
+                    start: 'today prev,next',
+                    center: 'title',
+                    end: 'addEvent dayGridMonth,dayGridWeek,dayGridDay,list',
+                },
+                footerToolbar: {
+                    start: '',
+                    center: '',
+                    end: 'prevYear,nextYear',
+                },
+                initialView: 'dayGridMonth', 
+                dateClick: function() {
+                    // alert('a Day has been clicked!');
+                },
+                editable: true, 
+                navLinks: true,
+                events: {
+                    url: '{% url "chef:get_chef_availabilities"  chef.id %}',  // URL to fetch events data
+                    method: 'GET',
+                },
+                height: 850,
+                themeSystem: 'darkly',
+                });
+                calendar.render();
+                calendar.addEvent(
+                    { // this object will be "parsed" into an Event Object
+                        title: 'Test Event 2', // a property!
+                        start: '2023-10-26', // a property!
+                        end: '2023-10-26' // a property! ** see important note below about 'end' **
+                    }
+                );
+            });
+
+        </script>
+        <style>
+
+            /* Styling full calendar */
+            :root {
+                --background: #2B2B2B; /* Dark gray background */
+                --text-color: #E0E0E0; /* Light gray text */
+                --highlight: #FF6B6B; /* Salmon red highlight */
+                --border: #444444; /* Dark border */
+                --header-bg: #1E1E1E; /* Dark header background */
+                --event-bg: #333333; /* Slightly darker event background */
+            }
+
+            /* Dark theme for FullCalendar */
+            .fc {
+                background-color: var(--background);
+                color: var(--text-color);
+                border: 1px solid var(--background);
+            }
+
+            .fc-toolbar {
+                background-color: var(--background);
+                color: var(--text-color);
+                padding: 10px;
+            }
+
+            .fc .fc-button-active {
+                background-color: var(--text-color);
+                color: var(--highlight);
+            }
+
+            .fc .fc-button-primary {
+                background-color: var(--highlight);
+                color: var(--background);
+            }
+
+            .fc-event {
+                background-color: var(--event-bg);
+                color: var(--text-color);
+                border-color: var(--border);
+            }
+
+            .fc-day-grid-event {
+                background-color: var(--event-bg);
+                color: var(--text-color);
+                border-color: var(--border);
+            }
+
+            .fc-event-title {
+                color: var(--text-color);
+            }
+
+            .fc-divider, .fc-event {
+                border-color: var(--border);
+            }
+
+            .fc-time-grid-event {
+                background-color: var(--event-bg);
+            }
+
+            .fc-today {
+                background-color: var(--highlight);
+                color: var(--background);
+            }
+
+            .fc-button:hover, .fc-event:hover {
+                background-color: var(--highlight);
+                color: var(--background);
+            }
+
+            /* The Modal (background) */
+            .booking-modal {
+                display: none; 
+                position: fixed; 
+                z-index: 3;
+                padding-top: 100px;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                background-color: rgb(0,0,0);
+                background-color: rgba(0,0,0,0.5);
+            }
+
+            /* Modal Content */
+            .booking-form {
+                background-color: #333333;
+                margin: auto;
+                padding: 20px;
+                border: 1px solid #888;
+                width: 80%;
+            }
+
+            /* The Close Button */
+            .close {
+                color: #aaaaaa;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+            }
+
+            .close:hover,
+            .close:focus {
+                color: #000;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+            .form-div {
+                background-color: #333333;
+                color: #fffef6;
+                font-family: Arial, sans-serif;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 75vh;
+                margin: 0;
+                padding: 10px;
+            }
+
+            .conversation-container {
+                background-color: #333333;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                max-width: 75vw;
+                width: 100%;
+            }
+
+            .conversation {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                width: 75vw;
+
+            }
+
+            .step {
+                display: flex;
+                align-items: center;
+                opacity: 0;
+                animation: fade-in 0.5s ease-in forwards;
+                margin: 10px 0;
+            }
+
+            /* .step:last-child {
+                animation: fade-in 0.5s ease-in 4.5s forwards;
+            } */
+
+            label {
+                font-size: 30px;
+                margin: 0;
+                padding-right: 10px;
+            }
+
+            p {
+                font-size: 30px;
+                margin: 0;
+            }
+
+            .input-field {
+                border: none;
+                border-bottom: 1px solid #fffef6;
+                background-color: transparent;
+                color: #fffef6;
+                padding: 2px;
+                font-size: 30px;
+                text-align: center;
+            }
+
+            .input-field:focus {
+                outline: none;
+                opacity: 1;
+                transition: opacity 0.5s;
+            }
+
+            input[type="number"]::-webkit-inner-spin-button,
+            input[type="number"]::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+
+            .submit-button {
+                /* display: none; */
+                /* margin-top: 10px; */
+                background-color: #333333;
+                color: #fffef6;
+                border: none;
+                /* padding: 10px 20px; */
+                /* border-radius: 3px; */
+                cursor: pointer;
+                font-size: 30px;
+                position: relative;
+            }
+
+            @keyframes fade-in {
+                to {
+                    opacity: 1;
+                }
+            }
+
+            .h1
+            {
+                color: var(--text-color);
+                padding: 10px;
+            }
+
+        </style>
+    </head>
+
+    <body style="background-color: var(--background);">
+        {% include 'top_nav.html' %}
+        {% block content %}
+
+            <h1 class='h1'>{{ chef.firstname }}'s Availabilities</h1>
+
+            <div id="bookingModal" class="booking-modal">
+                <div class="booking-form">
+                    <span class="close">&times;</span>
+                    <!-- Booking form here -->
+                    <div class="form-div">
+                        <form method="post" enctype="multipart/form-data" class="availability-form">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            
+                            <div class="conversation-container">
+                                <div class="conversation">
+                                    <div class="step">
+                                        <label for="start_time">Between</label>
+                                        <input type="time" id="start_time" name="start_time" class="input-field" required>
+                                    </div>
+                                    <div class="step">
+                                        <label for="end_time">and</label>
+                                        <input type="time" id="end_time" name="end_time" class="input-field" required>
+                                    </div>
+                                    <div class="step">
+                                        <label for="date">on</label>
+                                        <input type="date" id="date" name="date" class="input-field" required>
+                                    </div>
+                                    <div class="step">
+                                        <label for="vacancies">I want to host</label>
+                                        <input type="number" id="vacancies" name="vacancies" class="input-field" required>
+                                    </div>
+                                    <div class="step">
+                                        <label for="filled_seats">people and so far</label>
+                                        <input type="number" id="filled_seats" name="filled_seats" class="input-field" required>
+                                    </div>
+                                    <div class="step">
+                                        <p>will be there.</p>
+                                    </div>
+                                    <div class="step">
+                                        <label for="additional_info">Something else to note is</label>
+                                        <input type="text" id="additional_info" name="additional_info" class="input-field">
+                                    </div>
+                                </div>
+                                <br/>
+                                <br/>
+                                <button type="submit" class="submit-button">Add this to my calendar!</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+              
+            </div>
+
+            <div id='calendar'></div>
+
+            
+            
+        {% endblock %}
+    </body>
+</html>

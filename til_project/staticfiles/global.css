@@ -1,0 +1,129 @@
+body {
+    background-color: #fffef6;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+/* Add a black background color to the top navigation */
+.topnav {
+    background-color: #333;
+    overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: rgb(77, 76, 76);
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+    background-color: #fff8dc;
+    color: black;
+}
+
+.topnav-right {
+    float: right;
+}
+
+.welcome {
+    text-align: left;
+    margin-left: 20px;
+}
+
+.homeDiv {
+    background-color: #333;
+}
+
+.dropdown {
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+}
+
+
+.dropdown .dropbtn {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    
+}
+
+.topnav-right a:hover,
+.dropdown:hover .dropbtn {
+    background-color: rgb(77, 76, 76);
+}
+
+.dropdown-content {
+    display: none;
+    position: fixed;
+    top: 50px;
+    right: 0;
+    max-width: 140px;
+    background-color: #333333;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    text-align: right;
+    color: #f2f2f2;
+}
+
+.dropdown-content a:hover {
+    background-color: rgb(77, 76, 76);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.profileContent {
+    font-size: 20px;
+    text-align: left;
+}
+
+.profile {
+    display: table;
+    clear: both;
+    text-align: center;
+    max-width: 600px;
+    margin: auto;
+    padding: 30px 0px;
+
+}
+
+.profileInfo {
+    font-size: 20px;
+    margin-right: 20px;
+    text-align: left;
+}
+
+.profileColumn {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 300px;
+}
+
+.profileContainer {
+    border-radius: 25px;
+    background: #fff8dc;
+    max-width: 600px;
+    margin: auto;
+    padding: 30px 0px;
+}

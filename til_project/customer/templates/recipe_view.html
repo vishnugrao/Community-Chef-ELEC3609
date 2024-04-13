@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Recipe Profile</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="/static/global.css?{% now 'U' %}" />
+        <link rel="stylesheet" type="text/css" href="/static/login.css?{% now 'U' %}">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Zeyada">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+<body>
+
+
+    <div class="topnav">
+        <a>LOGO</a>
+        <div class="topnav-right">
+            <a class="active" href="{% url 'customer:index' user.id %}">Home</a>
+            <a href="{% url 'customer:view_all_recipe' user.id %}"> All Recipies</a>
+            <a href="">Fav Chefs</a>
+            <div class="dropdown">
+                <a style="padding: 0px 0px;"><img src="{{ chef.image.url }}" class="dropbtn"></a>
+                <div class="dropdown-content">
+                    <a href="{% url 'profile_manager:logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i>
+                        Logout </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div>
+        <h1 style="font-family: Zeyada; font-size: 50px; text-align: center;" class="welcome">
+            <image src="/static/chef_welcome.png" width="70px"></image> Recipe Details
+        </h1>
+    </div>
+
+    <div class="center-container">
+
+        <h2 class="recipe-name">{{ recipe.name }}</h2>
+        <p class="recipe-details">Recipe by <a href="{% url 'customer:chef_view' customer_id chef.id %}"><button>{{ chef.username }}</button></a></p>
+        <img class="recipe-image" src="{{ recipe.image.url }}" height="auto" width="500px" alt="{{ recipe.name }}">
+        <p class="recipe-details">{{ recipe.description }}</p>
+
+        <h3 class="ingredients-heading">Ingredients:</h3>
+        <table class="ingredients-table">
+            <thead>
+                <tr>
+                    <th>Ingredient Name</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ingredient in recipe.ingredients.all %}
+                    <tr>
+                        <td>{{ ingredient.name }}</td>
+                        <td>$ {{ ingredient.price }}</td>
+                    </tr>
+                {% endfor %}
+                <!-- Add a separate row for the total price -->
+                <tr class="total-price-row">
+                    <td>Total Price:</td>
+                    <td>$ {{ recipe.total_price }}</td>
+                </tr>
+            </tbody>
+        </table>
+        
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Account</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/global.css?{% now 'U' %}" />
+    <link rel="stylesheet" type="text/css" href="/static/login.css?{% now 'U' %}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Zeyada">
+</head>
+
+<body style="background-color: #333;">
+    <div class="topnav">
+            <a>LOGO</a>
+            <div class="topnav-right">
+                <a href="{% url 'customer:index' user.id %}">Home</a>
+                <a href="{% url 'customer:view_all_recipe' user.id %}"> All Recipies</a>
+                <a href="">Fav Chefs</a>
+                <div class="dropdown">
+                    <a style="padding: 0px 0px;"><img src="{{ chef.image.url }}" class="dropbtn"></a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'profile_manager:logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i>
+                            Logout </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <h1 style="font-family: Zeyada; font-size: 50px; text-align: center; margin-bottom: 20px; color: #fff8dc" class="welcome">
+        <image src="/static/chef_welcome.png" width="70px"></image> {{ chef.username }}'s profile
+    </h1>
+
+    <div class="profileContainer">
+        <div class="profile">
+            <div class="profileColumn">
+                <h2 class="profileContent"> Username:</h2>
+                <h2 class="profileContent"> First Name:</h2>
+                <h2 class="profileContent"> Last Name:</h2>
+                <h2 class="profileContent"> Email:</h2>
+                <h2 class="profileContent"> Profile Picture:</h2>
+            </div>
+
+            <div class="profileColumn">
+                <h2 class="profileInfo"> {{ chef.username }} </h2>
+                <h2 class="profileInfo"> {{ chef.firstname }} </h2>
+                <h2 class="profileInfo"> {{ chef.lastname }} </h2>
+                <h2 class="profileInfo"> {{ chef.email }} </h2>
+                <h2 class="profileContent"><image width="70px" height="70px" src="{{ chef.image.url }}"></image></h2>
+            </div>
+            <br>
+        </div>
+
+        <button><a class="button" href="/chat/{{chef.id}}_{{customer_id}}/">Chat</a></button>
+        <button><a class="button" href="{% url 'customer:report_chef_form' %}">Report</a></button>
+    </div>
+    <!-- For now we do not have access to all chef recipes -->
+</body>
+
+</html>

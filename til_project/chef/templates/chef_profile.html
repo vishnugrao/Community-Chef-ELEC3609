@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Account</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/global.css?{% now 'U' %}" />
+    <link rel="stylesheet" type="text/css" href="/static/login.css?{% now 'U' %}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Zeyada">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body style="background-color: #333;">
+
+    <div class="topnav">
+        <a>LOGO</a>
+        <div class="topnav-right">
+            <a href="{% url 'chef:chef_home' chef.id %}">Home</a>
+            <a href="{% url 'chef:display_recipes' chef.id %}"> My Recipies</a>
+            <a href="">Bookings</a>
+            <div class="dropdown">
+                <a style="padding: 0px 0px;"><img src="{{ chef.image.url }}"
+                        class="dropbtn"></a>
+                <div class="dropdown-content">
+                    <a class="active" href="{% url 'chef:chef_profile' chef.id %}">Account</a>
+                    <a href="{% url 'profile_manager:logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h1 style="font-family: Zeyada; font-size: 50px; text-align: center; margin-bottom: 20px; color: #fff8dc" class="welcome">
+        <image src="/static/chef_welcome.png" width="70px"></image> {{ chef.username }}'s profile
+    </h1>
+
+    <div style="max-width: 150px; margin: auto; text-align: center; margin-bottom: 50px;">
+        <a href="{% url 'chef:update_profile' chef.id %}"><button> Edit Profile </button></a>
+    </div>
+
+    <div class="profileContainer">
+        <div class="profile">
+            <div class="profileColumn">
+                <h2 class="profileContent"> Username:</h2>
+                <h2 class="profileContent"> First Name:</h2>
+                <h2 class="profileContent"> Last Name:</h2>
+                <h2 class="profileContent"> Email:</h2>
+                <h2 class="profileContent"> Password:</h2>
+                <h2 class="profileContent"> Profile Picture:</h2>
+            </div>
+
+            <div class="profileColumn">
+                <h2 class="profileInfo"> {{ chef.username }} </h2>
+                <h2 class="profileInfo"> {{ chef.firstname }} </h2>
+                <h2 class="profileInfo"> {{ chef.lastname }} </h2>
+                <h2 class="profileInfo"> {{ chef.email }} </h2>
+                <h2 class="profileInfo"> ●●●●●●●● </h2>
+                <h2 class="profileContent"><image width="100px" src="{{ chef.image.url }}"></image></h2>
+            </div>
+            <br>
+        </div>
+    </div>
+
+</body>
+
+</html>

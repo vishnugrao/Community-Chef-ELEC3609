@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Home</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/global.css?{% now 'U' %}" />
+    <link rel="stylesheet" type="text/css" href="/static/login.css?{% now 'U' %}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Zeyada">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+        <div class="topnav">
+        <a>LOGO</a>
+        <div class="topnav-right">
+            <a href="{% url 'chef:chef_home' id=id %}">Home</a>
+            <a href="{% url 'chef:display_recipes' id=id %}"> My Recipies</a>
+            <a href="{% url 'chef:chef_availability' id=id %}">Bookings</a>
+            <a class="active" href="{% url 'chef:chef_chats' id=id %}">Chat</a>
+            <div class="dropdown">
+                <a style="padding: 0px 0px;"><img src="{{ chef.image.url }}"
+                        class="dropbtn"></a>
+                <div class="dropdown-content">
+                    <a href="{% url 'chef:chef_profile' id=id %}">Account</a>
+                    <a href="{% url 'profile_manager:logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {% for room in rooms %}
+    Chat with customer {{room.customer_id.username}}!
+    <button><a href="/chat/{{room.chef_id.id}}_{{room.customer_id.id}}/">Enter Room</a></button>
+{% endfor %}
+
+</body>
+
+</html>
+
